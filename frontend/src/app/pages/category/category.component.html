@@ -1,0 +1,29 @@
+<div *ngIf="data$ | async as data$; else loading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 m-1" *ngFor="let item of data |async">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">price:{{item.price}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">in stock:{{item.stock}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div>
+        <app-spinner></app-spinner>
+    </div>
+</ng-template>
+
+<ngb-pagination [collectionSize]="length" [(page)]="page" [maxSize]="5" [pageSize]="perpage" [rotate]="true"
+    [boundaryLinks]="true" (pageChange)="change()">
+</ngb-pagination>
+
+<pre>Current page: {{page}}</pre>
